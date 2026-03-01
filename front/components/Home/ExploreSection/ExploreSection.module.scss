@@ -1,0 +1,45 @@
+.exploreSection {
+  .exportStateCard {
+    .img {
+      width: 10rem;
+      height: 10rem;
+      border-radius: 50%;
+      overflow: hidden;
+      img {
+        object-fit: cover;
+        aspect-ratio: 1;
+      }
+    }
+    .title {
+      margin-top: 1rem;
+      color: #000f2f;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+    .exploreBtn {
+      color: #00a99d;
+      font-size: 0.75rem;
+      font-weight: 500;
+      line-height: 162.5%;
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .exploreSection {
+    .exportStateCard {
+      .img {
+        width: 5rem;
+        height: 5rem;
+      }
+      .title {
+        margin-top: 0.75rem;
+        font-size: 1.25rem;
+      }
+      .exploreBtn {
+        font-size: 0.75rem;
+        line-height: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./*"],
+      "@components/*": ["./components/*"],
+      "@api/*": ["./api/*"],
+      "@constants": ["./constants"],
+      "@public/*": ["./public/*"],
+      "@styles/*": ["./styles/*"],
+      "@theme": ["./styles/scss/theme.scss"],
+    }
+  }
+}

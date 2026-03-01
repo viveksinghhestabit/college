@@ -1,0 +1,53 @@
+.counterSection {
+  background: #00a99d;
+  color: #ffffff;
+  padding: 3.75rem 0;
+  margin-top: 4rem;
+  .heading {
+    max-width: 420px;
+    margin: auto;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 3rem;
+  }
+  .counters {
+    margin-top: 2rem;
+    .counter {
+      padding: 1rem;
+      &:not(:last-child) {
+        border-right: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .count {
+        font-size: 2.25rem;
+        font-weight: 700;
+        line-height: 100%;
+        padding: 0 2.5rem;
+      }
+      .subtitle {
+        font-size: 0.875rem;
+        line-height: 180%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .counterSection {
+    padding: 3rem 0;
+    margin-top: 1.5rem;
+    .counters {
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      .counter {
+        width: 50%;
+        margin-bottom: 1rem;
+        &:not(:last-child) {
+          border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        &:nth-child(2) {
+          border-right: 0;
+        }
+      }
+    }
+  }
+}

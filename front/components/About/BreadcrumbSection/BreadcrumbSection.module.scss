@@ -1,0 +1,41 @@
+.breadcrumbSection {
+  height: 25rem;
+  color: #000;
+  position: relative;
+  &.darkBg {
+    color: #fff;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 3, 32, 0.53);
+    }
+  }
+  & > div {
+    position: relative;
+    z-index: 1;
+  }
+  .title {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 120%;
+  }
+  .subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 162.5%;
+    max-width: 900px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .breadcrumbSection {
+    height: 18rem;
+    .title {
+      font-size: 2.5rem;
+    }
+  }
+}

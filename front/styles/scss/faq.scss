@@ -1,0 +1,107 @@
+.faq {
+  &__accordion {
+    & .accordion-item {
+      border: none;
+      border-bottom: 1px solid rgba($color: #031220, $alpha: 0.06);
+      padding: 15px 0;
+      padding-left: 65px;
+    }
+    & .accordion-item:first-of-type .accordion-button {
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+    & .accordion-button {
+      font-size: 18px;
+      font-weight: 600;
+      color: #000;
+      border: 0;
+      padding: 15px 0;
+      padding-left: 25px;
+      position: relative;
+      border-radius: 20px 20px 0 0;
+      &::after {
+        position: absolute;
+        top: 50%;
+        left: -65px;
+        transform: translateY(-50%) rotate(0deg);
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        background-color: #f3f3f3;
+        background-image: none;
+        content: "\2b";
+        font-family: var(--tp-ff-fontawesome);
+        font-weight: 500;
+        margin: inherit;
+        border-radius: 50%;
+        transition: all 0.3s linear;
+      }
+    }
+
+    & .accordion-button:focus {
+      box-shadow: none;
+    }
+    & .accordion-body {
+      padding: 0;
+      padding-right: 50px;
+      padding-left: 25px;
+      padding-bottom: 25px;
+
+      @media only screen and (max-width: 576px) {
+        padding-right: 15px;
+      }
+
+      & p {
+        font-size: 15px;
+        color: #5f6160;
+        line-height: 24px;
+        margin-bottom: 0;
+      }
+    }
+
+    & .accordion-button:not(.collapsed) {
+      background-color: transparent;
+      box-shadow: none;
+      background-color: #f9f9f9;
+      &::after {
+        transform: translateY(-50%) rotate(45deg);
+        background-color: #007a70;
+        color: #fff;
+      }
+    }
+    & .accordion-collapse {
+      border-radius: 0 0 20px 20px;
+      background-color: #f9f9f9;
+    }
+  }
+  &__wrapper {
+    & p {
+      font-size: 16px;
+      margin-bottom: 20px;
+      & a {
+        color: #007a70;
+        font-weight: 500;
+      }
+    }
+  }
+  &__item {
+    &-wrapper {
+      @media only screen and (max-width: 768px) {
+        padding-left: 0;
+        margin-top: 50px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .faq {
+    &__accordion {
+      & .accordion-item {
+        padding: 0;
+        padding-left: 65px;
+      }
+    }
+  }
+}

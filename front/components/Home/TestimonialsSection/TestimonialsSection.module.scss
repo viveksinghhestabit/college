@@ -1,0 +1,115 @@
+.testimonialsSection {
+  .testimonialsList {
+    :global(.slick-track) {
+      padding-bottom: 1.5rem;
+      display: flex !important;
+    }
+    :global(.slick-slide) {
+      height: auto !important;
+    }
+    :global(.slick-track) {
+      display: flex;
+    }
+
+    :global(.slick-track .slick-slide) {
+      display: flex;
+      height: auto;
+    }
+
+    :global(.slick-dots li) {
+      margin: 0;
+      width: unset;
+      height: unset;
+      margin-right: 8px;
+    }
+
+    :global(.slick-dots) {
+      bottom: 3px;
+    }
+
+    :global(.slick-dots li.slick-active button) {
+      font-size: 0px !important;
+      background: #2c79ff;
+      border: 0;
+      border-radius: 3rem;
+      color: transparent;
+      height: 0.75rem;
+      width: 0.75rem;
+      opacity: 1;
+    }
+
+    :global(.slick-dots li button:before) {
+      color: transparent;
+    }
+
+    :global(.slick-dots li button) {
+      font-size: 0px !important;
+      background: #cbd1dc;
+      border-radius: 50%;
+      height: 0.5rem;
+      width: 0.5rem;
+      border: none;
+    }
+
+    :global(.slick-dots) {
+      .slick-active {
+        button {
+          height: 1rem;
+          border: 0;
+          width: 1rem;
+        }
+      }
+    }
+
+    .testimonialCard {
+      height: 100%;
+      padding: 1.875rem 2.5rem;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0px 15px 30px 0px rgba(67, 68, 71, 0.1);
+      .testimonialImg {
+        width: 3.125rem;
+        height: 3.125rem;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: auto;
+        margin-bottom: 1.875rem;
+      }
+      .ratings {
+        column-gap: 0.25rem;
+        margin-bottom: 0.75rem;
+        i {
+          color: #faa423;
+          font-size: 0.875rem;
+        }
+      }
+      .description {
+        color: #333f59;
+        font-size: 1rem;
+        line-height: 162.5%;
+        margin-bottom: 1.875rem;
+      }
+      .name {
+        color: #000f2f;
+        font-size: 1.25rem;
+        font-weight: 700;
+        line-height: 100%;
+      }
+      .title {
+        color: #333f59;
+        font-size: 0.875rem;
+        line-height: 185%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .testimonialsSection {
+    .testimonialsList {
+      .testimonialCard {
+        padding: 1.875rem 2rem;
+      }
+    }
+  }
+}

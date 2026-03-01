@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.collegeveda.com
+
+# Sitemaps
+Sitemap: https://www.collegeveda.com/sitemap.xml

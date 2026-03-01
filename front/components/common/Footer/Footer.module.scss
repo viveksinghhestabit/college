@@ -1,0 +1,103 @@
+.footer {
+  background: #f2fff9;
+  .subText {
+    margin-bottom: 1.25rem;
+    margin-top: 0.75rem;
+    color: #333f59;
+    font-size: 1rem;
+    line-height: 162.5%;
+  }
+  .subText2 {
+    color: #333f59;
+    font-size: 16px;
+    line-height: 162.5%;
+    margin-top: -0.25rem;
+  }
+  .socialLinks {
+    column-gap: 0.875rem;
+    .iconContainer {
+      width: 2.125rem;
+      height: 2.125rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      &:nth-child(1) {
+        background: #0d88f0;
+      }
+      &:nth-child(2) {
+        background: #d2173f;
+      }
+      &:nth-child(3) {
+        background: #03a9f4;
+      }
+    }
+  }
+  .footerLinksTitle {
+    color: #000f2f;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 120%;
+    margin-bottom: 2.125rem;
+  }
+  .footerLinks {
+    .footerLink {
+      margin-bottom: 1.5rem;
+      color: #333f59;
+      font-size: 0.875rem;
+      line-height: 100%;
+      text-decoration: none;
+      display: block;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .newsletterContainer {
+    input {
+      outline: none;
+      box-shadow: none;
+      border: none;
+      padding: 1rem 1.25rem;
+      color: #949db1;
+      font-size: 14px;
+      border-radius: 0;
+    }
+    button {
+      background: #459b08;
+      padding: 1rem 1.25rem;
+      color: #ffffff;
+      height: 53px;
+      font-size: 14px;
+      border-radius: 0;
+    }
+  }
+  .copyrightText {
+    border-top: 1px solid rgba(0, 15, 47, 0.06);
+    color: #333f59;
+    font-size: 1rem;
+    line-height: 162.5%;
+    padding: 1.625rem 0;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .footer {
+    .footerLinksTitle {
+      margin-bottom: 1.5rem;
+    }
+    .footerLinks {
+      .footerLink {
+        margin-bottom: 1rem;
+      }
+    }
+    .copyrightText {
+      border-top: 1px solid rgba(0, 15, 47, 0.06);
+      color: #333f59;
+      font-size: 1rem;
+      line-height: 162.5%;
+      padding: 1rem 0;
+    }
+  }
+}

@@ -1,0 +1,209 @@
+.collegesSection {
+  background: #f2fff9;
+  .title {
+    color: #000000;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 120%;
+  }
+  .toggleButton {
+    column-gap: 1rem;
+    button {
+      padding: 0.375rem 1.25rem;
+      background: #ffffff;
+      margin-right: 1.25rem;
+      color: #333f59;
+      text-align: center;
+      font-size: 0.875rem;
+      line-height: 185%;
+      border-radius: 0.25rem;
+      &:last-child {
+        margin-right: 0;
+      }
+      &.selected {
+        background: #00a99d;
+        color: #ffffff;
+      }
+    }
+  }
+  .collegesList {
+    margin-top: 2.5rem;
+    .collegeCard {
+      height: 100%;
+      overflow: hidden;
+      border-radius: 1rem;
+      background: #ffffff;
+      box-shadow: 0px 0px 26px 0px rgba(0, 0, 0, 0.11);
+      .collegeImage {
+        height: 240px !important;
+      }
+      .collegeCardContent {
+        height: calc(100% - 240px);
+        .tag {
+          color: #ffffff;
+          font-size: 1rem;
+          line-height: 185%;
+          border-radius: 1.573px;
+          background: #00a99d;
+          padding: 0.25rem 0.75rem;
+          margin-right: 0.775rem;
+        }
+        .collegeType {
+          color: #c9c9c9;
+          font-size: 0.725rem;
+          line-height: 185%;
+          svg {
+            fill: #c9c9c9;
+          }
+        }
+        .reviews {
+          .ratings {
+            color: #ffa423;
+            font-size: 0.75rem;
+            column-gap: 2px;
+            margin-bottom: 0.5rem;
+          }
+        }
+        .title {
+          color: #000f2f;
+          font-size: 1.25rem;
+          font-weight: 600;
+          line-height: 150%;
+        }
+        .description {
+          color: #4d5765;
+          font-size: 0.8rem;
+          line-height: 180%;
+          letter-spacing: 0.197px;
+        }
+        .buttonsContainer {
+          column-gap: 0.75rem;
+          .primaryButton {
+            border-radius: 3px;
+            background: #9fd51d;
+            color: #ffffff;
+            font-size: 0.8rem;
+            font-weight: 500;
+            line-height: 180%;
+            display: inline-block;
+          }
+          button {
+            font-size: 0.8rem;
+            font-weight: 500;
+            line-height: 180%;
+            &.secondaryButton {
+              border-radius: 3px;
+              border: 1px solid #00a99d;
+              color: #00a99d;
+            }
+          }
+        }
+      }
+    }
+  }
+  .exploreButton {
+    border: 2px solid #00a99d;
+    background: #fff;
+    height: 3.5rem;
+    padding: 0 2.5rem;
+    line-height: 3.5rem;
+    color: #00a99d;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: -0.369px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .collegesSection {
+    .title {
+      font-size: 2.25rem;
+    }
+    .subtitle {
+      font-size: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .toggleButton {
+      column-gap: 0.25rem;
+      button {
+        padding: 0.25rem 0.75rem;
+        margin-right: 0.25rem;
+      }
+    }
+    .collegesList {
+      margin-top: 1.5rem;
+      .collegeCard {
+        overflow: hidden;
+        border-radius: 1rem;
+        background: #ffffff;
+        box-shadow: 0px 0px 26px 0px rgba(0, 0, 0, 0.11);
+        .collegeCardContent {
+          .tag {
+            color: #ffffff;
+            font-size: 1rem;
+            line-height: 185%;
+            border-radius: 1.573px;
+            background: #00a99d;
+            padding: 0.25rem 0.75rem;
+            margin-right: 0.775rem;
+          }
+          .collegeType {
+            color: #c9c9c9;
+            font-size: 0.725rem;
+            line-height: 185%;
+            svg {
+              fill: #c9c9c9;
+            }
+          }
+          .reviews {
+            .ratings {
+              color: #ffa423;
+              font-size: 0.75rem;
+              column-gap: 2px;
+              margin-bottom: 0.5rem;
+            }
+          }
+          .title {
+            color: #000f2f;
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 150%;
+          }
+          .description {
+            color: #4d5765;
+            font-size: 0.8rem;
+            line-height: 180%;
+            letter-spacing: 0.197px;
+          }
+          .buttonsContainer {
+            column-gap: 0.75rem;
+            .primaryButton {
+              border-radius: 3px;
+              background: #9fd51d;
+              color: #ffffff;
+              font-size: 0.8rem;
+              font-weight: 500;
+              line-height: 180%;
+              display: inline-block;
+            }
+            button {
+              font-size: 0.8rem;
+              font-weight: 500;
+              line-height: 180%;
+              &.secondaryButton {
+                border-radius: 3px;
+                border: 1px solid #00a99d;
+                color: #00a99d;
+              }
+            }
+          }
+        }
+      }
+    }
+    .exploreButton {
+      padding: 0 2.5rem;
+      line-height: 2.75rem;
+      height: 3rem;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+.sidebarContainer {
+  height: 100vh;
+  background: #fff;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 90%;
+  bottom: 15%;
+  .listContainer {
+    margin-top: 20vh;
+    .listItem {
+      border-bottom: 1px solid #2a3a57;
+      padding: 10px 0;
+      a {
+        text-decoration: none;
+        color: #2a3a57;
+      }
+    }
+  }
+  .consultationButton {
+    border: 1px solid #459b08;
+    background: #459b08;
+    padding: 0.5rem 1.5rem;
+    column-gap: 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    width: 100%;
+  }
+}

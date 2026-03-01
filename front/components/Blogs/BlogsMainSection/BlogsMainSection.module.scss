@@ -1,0 +1,27 @@
+.blogsContainer {
+  .blogContainer {
+    .blogDetails {
+      .detailContainer {
+        font-weight: 700;
+        font-size: 0.9rem;
+        i {
+          color: #00a99d;
+        }
+      }
+    }
+    .blogTitle {
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: 110%;
+    }
+    .blogData {
+      color: #333f59;
+      font-size: 1rem;
+    }
+    .readMoreButton {
+      font-size: 0.925rem;
+      background: #00a99d;
+      border-color: #00a99d;
+    }
+  }
+}
