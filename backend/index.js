@@ -9,7 +9,19 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://collegeveda.com",
+      "https://www.collegeveda.com",
+      "https://admin.collegeveda.com",
+    ],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
+
 app.use(bodyParser.json());
 
 // Connect to MongoDB
