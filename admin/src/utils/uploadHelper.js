@@ -1,59 +1,51 @@
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080/api";
+const CLOUD_NAME = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || "";
+const UPLOAD_PRESET = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET || "eduvisor";
+console.log("Cloudinary Config:", { CLOUD_NAME, UPLOAD_PRESET });
 
-/**
- * Upload image to Cloudinary via backend
- * @param {File} file - Image file to upload
- * @param {string} publicId - Optional public ID for the image
- * @returns {Promise} - Returns { url, publicId, format, width, height }
- */
 export const uploadImage = async (file, publicId = null) => {
-  try {
-    const formData = new FormData();
-    formData.append("file", file);
-    
-    if (publicId) {
-      formData.append("public_id", publicId);
-    }
+    try {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", UPLOAD_PRESET);
+        
+        if (publicId) {
+            formData.append("public_id", publicId);
+        }
 
-    const response = await axios.post(`${API_URL}/upload/image`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+        const response = await axios.post(
+            `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+            formData
+        );
 
-    if (response.data.success) {
-      return response.data.data;
-    } else {
-      throw new Error(response.data.message || "Upload failed");
+        return response.data; // Cloudinary directly returns upload data
+    } catch (error) {
+        console.error("Upload error:", error.response?.data || error.message);
+        throw error;
     }
-  } catch (error) {
-    console.error("Upload error:", error);
-    throw error;
-  }
 };
 
 /**
- * Delete image from Cloudinary via backend
+ * Delete image from Cloudinary
  * @param {string} publicId - Public ID of the image to delete
  * @returns {Promise}
  */
 export const deleteImage = async (publicId) => {
-  try {
-    const response = await axios.post(`${API_URL}/upload/delete`, {
-      publicId,
-    });
+    try {
+        const formData = new FormData();
+        formData.append("public_id", publicId);
 
-    if (response.data.success) {
-      return response.data;
-    } else {
-      throw new Error(response.data.message || "Delete failed");
+        const response = await axios.post(
+            `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/destroy`,
+            formData
+        );
+
+        return response.data; // Cloudinary directly returns deletion data
+    } catch (error) {
+        console.error("Delete error:", error.response?.data || error.message);
+        throw error;
     }
-  } catch (error) {
-    console.error("Delete error:", error);
-    throw error;
-  }
 };
 
 /**
@@ -62,14 +54,12 @@ export const deleteImage = async (publicId) => {
  * @returns {Promise} - Array of upload results
  */
 export const uploadMultipleImages = async (files) => {
-  try {
-    const uploadPromises = Array.from(files).map((file) =>
-      uploadImage(file)
-    );
-    const results = await Promise.all(uploadPromises);
-    return results;
-  } catch (error) {
-    console.error("Multiple upload error:", error);
-    throw error;
-  }
+    try {
+        const uploadPromises = Array.from(files).map(file => uploadImage(file));
+        const results = await Promise.all(uploadPromises);
+        return results; // Array of Cloudinary upload responses
+    } catch (error) {
+        console.error("Multiple upload error:", error.response?.data || error.message);
+        throw error;
+    }
 };
