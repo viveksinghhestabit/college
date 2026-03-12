@@ -9,13 +9,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-app.use(cors({
-  origin: "https://admin.collegeveda.com",
-  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
-  allowedHeaders: ["Content-Type","Authorization"]
-}));
+// app.use(cors({
+//   origin: "https://admin.collegeveda.com",
+//   methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+//   allowedHeaders: ["Content-Type","Authorization"]
+// }));
 
-app.options("*", cors());
+// app.options("*", cors());
+app.use(cors());
 
 app.use(bodyParser.json());
 
