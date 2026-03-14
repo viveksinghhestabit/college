@@ -36,7 +36,8 @@ const AddGallary = () => {
   const handleinput2 = async (file) => {
     try {
       if (!file) return;
-      const result = await uploadImage(file, "gallery-image");
+      const publicId = `gallery-image-${Date.now()}`;
+      const result = await uploadImage(file, publicId);
       return result.url;
     } catch (error) {
       alert(error.message || "Upload failed");

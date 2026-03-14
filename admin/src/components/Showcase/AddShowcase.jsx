@@ -41,8 +41,9 @@ const AddShowcaseForm = () => {
     try {
       const file = e.target.files[0];
       if (!file) return;
+      const publicId = `showcase-image-${Date.now()}`;
       
-      const result = await uploadImage(file, "showcase-image");
+      const result = await uploadImage(file, publicId);
       setShowcaseData({ ...showcaseData, image: result.url });
     } catch (error) {
       alert(error.message || "Upload failed");

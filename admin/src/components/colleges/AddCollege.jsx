@@ -65,8 +65,8 @@ const AddCollege = () => {
     try {
       const file = e.target.files[0];
       if (!file) return;
-      
-      const result = await uploadImage(file, "college-logo");
+      const publicId = `college-logo-${Date.now()}`;
+      const result = await uploadImage(file, publicId);
       setuniversityData({ ...universityData, logo: result.url });
     } catch (error) {
       alert(error.message || "Logo upload failed");
@@ -77,8 +77,8 @@ const AddCollege = () => {
     try {
       const file = e.target.files[0];
       if (!file) return;
-      
-      const result = await uploadImage(file, "college-coverpic");
+      const publicId = `college-coverpic-${Date.now()}`;
+      const result = await uploadImage(file, publicId);
       setuniversityData({ ...universityData, coverpic: result.url });
     } catch (error) {
       alert(error.message || "Cover pic upload failed");

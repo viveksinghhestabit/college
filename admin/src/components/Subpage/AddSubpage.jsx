@@ -39,8 +39,8 @@ const AddSubpage = () => {
     try {
       const file = e.target.files[0];
       if (!file) return;
-      
-      const result = await uploadImage(file, "subpage-photo");
+      const publicId = `subpage-photo-${Date.now()}`;
+      const result = await uploadImage(file, publicId);
       setblogData({ ...blogData, photo: result.url });
     } catch (error) {
       alert(error.message || "Upload failed");

@@ -34,8 +34,8 @@ const AddBlogForm = () => {
     try {
       const file = e.target.files[0];
       if (!file) return;
-      
-      const result = await uploadImage(file, "blog-pic");
+      const publicId = `blog-pic-${Date.now()}`;
+      const result = await uploadImage(file, publicId);
       setblogData({ ...blogData, blogPic: result.url });
     } catch (error) {
       alert(error.message || "Upload failed");

@@ -53,8 +53,8 @@ const AddArtistForm = () => {
     try {
       const file = e.target.files[0];
       if (!file) return;
-      
-      const result = await uploadImage(file, "university-logo");
+      const publicId = `university-logo-${Date.now()}`;
+      const result = await uploadImage(file, publicId);
       setuniversityData({ ...universityData, logo: result.url });
     } catch (error) {
       alert(error);
@@ -73,8 +73,8 @@ const AddArtistForm = () => {
     try {
       const file = e.target.files[0];
       if (!file) return;
-      
-      const result = await uploadImage(file, "university-coverpic");
+      const publicId = `university-coverpic-${Date.now()}`;
+      const result = await uploadImage(file, publicId);
       setuniversityData({ ...universityData, coverpic: result.url });
     } catch (error) {
       alert(error.message || "Upload failed");
