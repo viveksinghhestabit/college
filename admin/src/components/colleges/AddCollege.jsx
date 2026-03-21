@@ -118,7 +118,10 @@ const AddCollege = () => {
       
       const result = await uploadImage(file, `college-gallery-${index}`);
 
-      let data = [...universityData.gallery];
+      const currentGallery = Array.isArray(universityData?.gallery)
+        ? universityData.gallery
+        : [];
+      let data = [...currentGallery];
       data[index] = result.url;
       setuniversityData({ ...universityData, gallery: data });
     } catch (error) {
@@ -128,17 +131,22 @@ const AddCollege = () => {
 
   const removeImage = (e, index) => {
     e.preventDefault();
-    let data = [...universityData?.gallery];
+    const currentGallery = Array.isArray(universityData?.gallery)
+      ? universityData.gallery
+      : [];
+    let data = [...currentGallery];
     data.splice(index, 1);
     setuniversityData({ ...universityData, gallery: data });
   };
 
   const addImages = (e) => {
     e.preventDefault();
-    let newfield = e.target.value;
+    const currentGallery = Array.isArray(universityData?.gallery)
+      ? universityData.gallery
+      : [];
     setuniversityData({
       ...universityData,
-      gallery: [...universityData?.gallery, newfield],
+      gallery: [...currentGallery, ""],
     });
   };
 
@@ -160,7 +168,12 @@ const AddCollege = () => {
     try {
       setLoading(true);
       const response = await getCollegeById(id);
-      setuniversityData(response?.data?.data);
+      const collegeData = response?.data?.data || {};
+      setuniversityData({
+        ...initialState,
+        ...collegeData,
+        gallery: Array.isArray(collegeData?.gallery) ? collegeData.gallery : [],
+      });
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -281,6 +294,16 @@ const AddCollege = () => {
                       placeholder="Upload A Image"
                       className="mb-3 addArtist-inputField"
                     />
+                    {!!universityData?.logo && (
+                      <div className="d-flex w-100 justify-content-end mt-2">
+                        <img
+                          src={universityData?.logo}
+                          height={50}
+                          width={50}
+                          alt="college-logo"
+                        />
+                      </div>
+                    )}
                   </div>
 
                   <div className="addArtist-inputFieldDiv">
@@ -292,19 +315,18 @@ const AddCollege = () => {
                       placeholder="Upload A Image"
                       className="addArtist-inputField"
                     />
+                    {!!universityData?.coverpic && (
+                      <div className="d-flex w-100 justify-content-end mt-2">
+                        <img
+                          src={universityData?.coverpic}
+                          height={50}
+                          width={50}
+                          alt="college-cover"
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
-                {!!universityData?.coverpic && (
-                  <div className="d-flex w-100 justify-content-end mt-2">
-                    {" "}
-                    <img
-                      src={universityData?.coverpic}
-                      height={50}
-                      width={50}
-                      alt="logo"
-                    />
-                  </div>
-                )}
 
                 {/* 2nd row */}
                 <div className="addArtist-alignRow">
@@ -499,18 +521,6 @@ const AddCollege = () => {
                     />
                   </div>
                 </div>
-                {!!universityData?.logo && (
-                  <div className="d-flex w-100 justify-content-end mt-2">
-                    {" "}
-                    <img
-                      src={universityData?.logo}
-                      height={50}
-                      width={50}
-                      alt="logo"
-                    />
-                  </div>
-                )}
-
                 <div className="addArtist-alignRow mt-3 flex-column align-items-start">
                   <h4>Gallery Pics</h4>
                   <div className="mb-5 w-100" controlId="formBasicEmail">
