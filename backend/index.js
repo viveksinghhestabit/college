@@ -19,6 +19,7 @@ const PORT = process.env.PORT || 8080;
 app.use(cors());
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Connect to MongoDB
 const connectDB = async () => {
@@ -44,6 +45,7 @@ app.use("/api/universities", require("./routes/universityRoutes"));
 app.use("/api/showcase", require("./routes/showcaseRoutes"));
 app.use("/api/rank-predictor", require("./routes/rankPredictorRoutes"));
 app.use("/api/apply", require("./routes/applyFormRoutes"));
+app.use("/api", require("./routes/legacyRoutes"));
 
 // Add other routes as needed
 

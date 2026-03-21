@@ -7,6 +7,9 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
+
+const API_BASE_URL =
+  process.env.REACT_APP_API_URL || "http://localhost:8080/api";
 const initialState = {
   university: "",
   name: null,
@@ -210,7 +213,7 @@ const Addcoursepage = () => {
   const handlesubmit = async () => {
     try {
       await axios.post(
-        "https://flywise-admin.herokuapp.com/api/createCourse",
+        `${API_BASE_URL}/createCourse`,
         courseData
       );
       history.push("/Universities");

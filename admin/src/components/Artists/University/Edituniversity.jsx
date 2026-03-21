@@ -5,6 +5,9 @@ import { useHistory } from "react-router-dom";
 import "../../../styles/AddArtistForm.css";
 import { State } from "country-state-city";
 import { useParams } from "react-router-dom";
+
+const API_BASE_URL =
+  process.env.REACT_APP_API_URL || "http://localhost:8080/api";
 const initialState = {
   name: "",
   uniPic: "",
@@ -36,7 +39,7 @@ function Edituniversity() {
   const getunidata = async () => {
     try {
       const res = await axios.get(
-        `https://flywise-admin.herokuapp.com/api/uniById/${param.id}`
+        `${API_BASE_URL}/uniById/${param.id}`
       );
       setunidata(res.data.uni);
       setuniversityData(res.data.uni);
@@ -69,7 +72,7 @@ function Edituniversity() {
 
     try {
       await axios.patch(
-        `https://flywise-admin.herokuapp.com/api/updateUniversity/${param.id}`,
+        `${API_BASE_URL}/updateUniversity/${param.id}`,
         formData
       );
       history.push("/Universities");

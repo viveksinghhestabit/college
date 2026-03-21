@@ -110,7 +110,7 @@ const AddArtistForm = () => {
       const file = e.target.files[0];
       if (!file) return;
       
-      const result = await uploadImage(file, `university-gallery-${index}`);
+      const result = await uploadImage(file, `university-gallery-${index}-${Date.now()}`);
 
       let data = [...universityData.gallery];
       data[index] = result.url;

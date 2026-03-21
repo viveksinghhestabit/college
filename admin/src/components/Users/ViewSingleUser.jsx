@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../../styles/ArtistsTable.css";
 
+const API_BASE_URL =
+  process.env.REACT_APP_API_URL || "http://localhost:8080/api";
+
 function ViewSingleUser() {
   const [SingleUserData, setSingleUserData] = useState({});
   const param = useParams();
@@ -10,7 +13,7 @@ function ViewSingleUser() {
   const call1 = async () => {
     try {
       const get = await axios.get(
-        `https://flywise-admin.herokuapp.com/api/users/${param.id}`
+        `${API_BASE_URL}/users/${param.id}`
       );
       setSingleUserData(get.data.user);
     } catch (error) {

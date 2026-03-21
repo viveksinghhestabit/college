@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "../../../styles/ArtistsTable.css";
 
+const API_BASE_URL =
+  process.env.REACT_APP_API_URL || "http://localhost:8080/api";
+
 function Onecourse(prop) {
   let discipline = prop.discipline;
   return (
@@ -49,7 +52,7 @@ function Onecourse(prop) {
                 if (yes) {
                   try {
                     await axios.delete(
-                      `https://flywise-admin.herokuapp.com/api/deleteUnivesity/${prop.id}`
+                      `${API_BASE_URL}/deleteUnivesity/${prop.id}`
                     );
                     window.location.reload();
                   } catch (err) {

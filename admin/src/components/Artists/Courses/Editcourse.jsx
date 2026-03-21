@@ -8,6 +8,9 @@ import { useParams, useHistory } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 
+const API_BASE_URL =
+  process.env.REACT_APP_API_URL || "http://localhost:8080/api";
+
 const initialState = {
   university: "",
   name: null,
@@ -120,7 +123,7 @@ function Editcourse() {
     setLoading(true);
     try {
       const res = await axios.get(
-        `https://flywise-admin.herokuapp.com/api/courseById/${param.id2}`
+        `${API_BASE_URL}/courseById/${param.id2}`
       );
       setgetcoursedata(res.data.course);
       setcourseData(res.data.course);
@@ -133,7 +136,7 @@ function Editcourse() {
   const handlesubmit = async () => {
     try {
       await axios.patch(
-        `https://flywise-admin.herokuapp.com/api/updateCourse/${param.id2}`,
+        `${API_BASE_URL}/updateCourse/${param.id2}`,
         courseData
       );
 

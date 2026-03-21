@@ -7,6 +7,9 @@ import { useHistory } from "react-router-dom";
 import Onecourse from "./Onecourse";
 import addIcon from "../../../images/addIcon.svg";
 
+const API_BASE_URL =
+  process.env.REACT_APP_API_URL || "http://localhost:8080/api";
+
 function ViewCoursePage() {
   const [courseData, setcourseData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -25,7 +28,7 @@ function ViewCoursePage() {
 
     try {
       const res = await axios.get(
-        `https://flywise-admin.herokuapp.com/api/allCourseByUniId/${param.id}`
+        `${API_BASE_URL}/allCourseByUniId/${param.id}`
       );
       setcourseData(res.data.courses);
       setLoading(false);

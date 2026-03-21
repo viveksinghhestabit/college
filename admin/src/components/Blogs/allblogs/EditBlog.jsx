@@ -6,6 +6,9 @@ import LoadingPage from "../../utils/LoadingPage";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
+const API_BASE_URL =
+  process.env.REACT_APP_API_URL || "http://localhost:8080/api";
+
 const initialData = {
   writerName: "",
   writerTagline: "",
@@ -35,7 +38,7 @@ function EditBlog() {
     setLoading(true);
     try {
       const res = await axios.get(
-        `https://flywise-admin.herokuapp.com/api/blogById/${param.id}`
+        `${API_BASE_URL}/blogById/${param.id}`
       );
       setgetblogData(res.data.blog);
       setblogData(res.data.blog);
@@ -92,7 +95,7 @@ function EditBlog() {
     formData.append("links[linkedin]", blogData.links.linkedin);
     try {
       await axios.patch(
-        `https://flywise-admin.herokuapp.com/api/updateBlog/${param.id}`,
+        `${API_BASE_URL}/updateBlog/${param.id}`,
         formData
       );
       history.push("/blogs");
