@@ -1,6 +1,7 @@
 import { submitEnquiry } from "@/api";
 import React, { useState } from "react";
-import { BsFillTelephoneFill } from "react-icons/bs";
+import { BsFillTelephoneFill, BsQrCode } from "react-icons/bs";
+import { FaInstagram, FaWhatsapp, FaYoutube, FaFacebook } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import ToastMessage from "../common/Toasts";
@@ -12,6 +13,32 @@ const defaultState = {
   message: "",
   source: "Contact details form",
 };
+
+const quickReachLinks = [
+  {
+    label: "Whatsapp",
+    href: "https://wa.me/+919355001127",
+    icon: FaWhatsapp,
+  },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/@collgeveda",
+    icon: FaYoutube,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/collegevedaofficial/",
+    icon: FaInstagram,
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/collegevedaofficial",
+    icon: FaFacebook,
+  },
+];
+
+const brochureLink =
+  "https://drive.google.com/file/d/1F5ifIrmdH3DVlzzgDezaNuEI8X95qkE-/view";
 
 const ContactDetails = () => {
   const [formData, setFormData] = useState(defaultState);
@@ -44,7 +71,7 @@ const ContactDetails = () => {
   return (
     <section className="container-lg mb-5 pb-sm-5">
       <div className="row">
-        <div className="col-sm-5 ps-0 mb-sm-0 mb-4">
+        <div className="col-sm-4 ps-0 mb-sm-0 mb-4">
           <div className="border rounded overflow-hidden contact-form-college h-100">
             <h5 className="bg-green-common p-3 text-white ">Contact Details</h5>
             <div className="p-5">
@@ -54,7 +81,7 @@ const ContactDetails = () => {
               <div className="d-flex align-items-center gap-3 mt-2">
                 <FaLocationDot fontSize={24} />
                 <p className="mb-0">
-                  814, 8th Floor, Wave Silver Tower, Sec-18 Noida, Uttar Pradesh
+                  F-20/08 wave one ( silver unit ) sector 18 noida
                   - 201301 India
                 </p>
               </div>
@@ -82,7 +109,7 @@ const ContactDetails = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-7 pe-0">
+        <div className="col-sm-5 ps-0 mb-sm-0 mb-4">
           <div className="p-sm-5 py-sm-0 py-5 rounded d-flex flex-column align-items-center contact-form-college h-100">
             <form action="#" onSubmit={handleSubmit}>
               <div className="input-group mb-4">
@@ -145,6 +172,42 @@ const ContactDetails = () => {
                 Submit
               </button>
             </form>
+          </div>
+        </div>
+        <div className="col-sm-3 ps-0 mb-sm-0 mb-4">
+          <div className="border rounded overflow-hidden contact-form-college quick-reach-card h-100 d-flex flex-column">
+            <h5 className="bg-green-common p-3 text-white mb-0">Quick Reach</h5>
+            <div className="quick-reach-body flex-grow-1">
+              {quickReachLinks.map(({ label, href, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="quick-reach-item text-decoration-none"
+                >
+                  <div className="quick-reach-label-wrap">
+                    <span className="quick-reach-icon">
+                      <Icon fontSize={20} />
+                    </span>
+                    <span className="quick-reach-label">{label}</span>
+                  </div>
+                  <div className="quick-reach-qr" aria-hidden="true">
+                    <BsQrCode fontSize={44} />
+                  </div>
+                </a>
+              ))}
+            </div>
+            <div className="quick-reach-footer">
+              <a
+                href={brochureLink}
+                target="_blank"
+                rel="noreferrer"
+                className="quick-reach-brochure"
+              >
+                Download brochure
+              </a>
+            </div>
           </div>
         </div>
       </div>

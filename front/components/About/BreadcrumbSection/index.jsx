@@ -11,7 +11,7 @@ const BreadcrumbSection = ({ title, subtitle, imgURL }) => {
         background: `url('${img}') no-repeat center center/cover`,
       }}
     >
-      <div className="container-lg d-flex align-items-start justify-content-center flex-column h-100">
+      <div className="container-lg d-flex align-items-start justify-content-center flex-column h-100 text-white">
         {title && <h1 className={styles.title}>{title}</h1>}
         {subtitle && (
           <p

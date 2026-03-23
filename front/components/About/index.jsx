@@ -14,7 +14,8 @@ const AboutComponent = () => {
         imgURL="/assets/images/breadcrumbs/AboutUs.jpeg"
         title="About us"
         subtitle="
-Welcome to College Veda – where passion for education meets personalized guidance, empowering each student's unique journey towards success."
+Welcome to College Veda – where passion for education meets <br>
+personalized guidance, empowering each student's <br> unique journey towards success."
       />
       <TopSection />
       <MissionSection />

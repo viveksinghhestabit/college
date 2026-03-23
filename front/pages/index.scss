@@ -1,2 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
 @import "../styles/scss/index.scss";
+
+.container-lg {
+    max-width: 1420px;
+}
+
+.quick-reach-card .quick-reach-qr {
+    width: 3.75rem;
+    height: 3.75rem;
+}
