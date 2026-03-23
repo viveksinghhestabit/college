@@ -6,7 +6,7 @@ const ContactComponent = () => {
   return (
     <>
       <BreadcrumbSection
-        imgURL="/assets/images/breadcrumbs/contact-us.webp"
+        imgURL="/assets/images/breadcrumbs/ContactUs.jpeg"
         title="Contact us"
         subtitle="Get personalized guidance for your college journey. <br/> Contact us today"
       />

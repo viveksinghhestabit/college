@@ -28,7 +28,7 @@ const AllIndiaCutoffComponent = () => {
   return (
     <div className={styles.cutoffSection}>
       <BreadcrumbSection
-        imgURL="/assets/images/breadcrumbs/all-india-rank.webp"
+        imgURL="/assets/images/breadcrumbs/AllIndiaCutOff.jpeg"
         title="NEET Cut Off 2025 Out"
         subtitle="NEET Cut Off 2025 has been released by NTA category wise."
       />

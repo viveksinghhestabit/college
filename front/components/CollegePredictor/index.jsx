@@ -94,7 +94,7 @@ const CollegePredictorComponent = () => {
     <div className={styles.collegePredictorSection}>
       <BreadcrumbSection
         imgURL="/assets/images/breadcrumbs/rank-predictor.webp"
-        title="BAMS College Predictor 2025"
+        title="BAMS College Predictor 2026"
         subtitle="Forecast early to know which college to secure your BAMS seat."
       />
 

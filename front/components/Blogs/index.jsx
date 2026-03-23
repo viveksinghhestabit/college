@@ -27,7 +27,7 @@ const BlogsComponent = () => {
   return (
     <>
       <BreadcrumbSection
-        imgURL="/assets/images/breadcrumbs/blogs.webp"
+        imgURL="/assets/images/breadcrumbs/Blogs.jpeg"
         title="Blogs"
         subtitle="Discover expert tips and insights for your college journey.</br>Read our blog!"
       />

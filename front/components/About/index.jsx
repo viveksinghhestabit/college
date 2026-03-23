@@ -11,7 +11,7 @@ const AboutComponent = () => {
   return (
     <div>
       <BreadcrumbSection
-        imgURL="/assets/images/breadcrumbs/about-us.webp"
+        imgURL="/assets/images/breadcrumbs/AboutUs.jpeg"
         title="About us"
         subtitle="
 Welcome to College Veda – where passion for education meets personalized guidance, empowering each student's unique journey towards success."

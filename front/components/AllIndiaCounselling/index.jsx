@@ -96,7 +96,7 @@ const AllIndiaCounsellingComponent = () => {
               (BAMS/BSMS/BUMS/BHMS) courses are hereby informed that Counselling
               for All India Quota seats under Government, Government Aided,
               Deemed Universities, Central Universities, and National Institutes
-              for the session 2025-25 will be conducted by Ayush Admissions
+              for the session 2026-27 will be conducted by Ayush Admissions
               Central Counseling Committee (AACCC), Ministry of Ayush,
               Government of India.
             </p>
@@ -125,7 +125,7 @@ const AllIndiaCounsellingComponent = () => {
               </li>
             </ol>
             <Image
-              src="/assets/images/common/allIndiaCounselling.webp"
+              src="/assets/images/common/AllIndiaCounsellingHierarchy.png"
               width="0"
               height="0"
               className="w-100 h-auto"
@@ -165,10 +165,10 @@ const AllIndiaCounsellingComponent = () => {
           </div>
           <div className="mb-4">
             <h1 className={styles.title}>
-              NEET Counselling 2025 Documents Required
+              NEET Counselling 2026 Documents Required
             </h1>
             <p>
-              To participate in NEET Counselling 2025, candidates need to
+              To participate in NEET Counselling 2026, candidates need to
               provide the following documents:
             </p>
             <ol type="1">

@@ -53,7 +53,7 @@ const StateCounsellingComponent = () => {
   return (
     <div className={styles.cutoffSection}>
       <BreadcrumbSection
-        imgURL="/assets/images/breadcrumbs/rank-predictor.webp"
+        imgURL="/assets/images/breadcrumbs/Counselling.jpeg"
         title="State Counselling"
       />
       <div className="container-lg py-5">
@@ -86,7 +86,7 @@ const StateCounsellingComponent = () => {
               ))}
             </div>
             <Image
-              src="/assets/images/common/state-counselling-img-1.avif"
+              src="/assets/images/common/StateCounselling01.png"
               width="0"
               height="0"
               className="w-100 h-auto"
@@ -95,7 +95,7 @@ const StateCounsellingComponent = () => {
               draggable={false}
             />
             <Image
-              src="/assets/images/common/state-counselling-img-2.avif"
+              src="/assets/images/common/StateCounselling02.png"
               width="0"
               height="0"
               className="w-100 h-auto"
@@ -104,7 +104,7 @@ const StateCounsellingComponent = () => {
               draggable={false}
             />
             <Image
-              src="/assets/images/common/state-counselling-img-3.avif"
+              src="/assets/images/common/StateCounselling03.png"
               width="0"
               height="0"
               className="w-100 h-auto"
