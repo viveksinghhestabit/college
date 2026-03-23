@@ -21,6 +21,22 @@ const userSchema = new mongoose.Schema(
       enum: ["admin", "user"],
       default: "user",
     },
+    phoneNumber: {
+      type: String,
+      required: true,
+    },
+    neetScore: {
+      type: Number,
+      default: null,
+    },
+    preferredState: {
+      type: String,
+      default: "",
+    },
+    preferredCollege: {
+      type: String,
+      default: "",
+    },
   },
   { timestamps: true }
 );

@@ -9,6 +9,10 @@ export const getColleges = () => API.get("/colleges");
 export const getCollegeById = (collegeId) => API.get(`/colleges/${collegeId}`);
 export const getCollegesWithFilters = (data) =>
   API.post("/colleges/filters", data);
+export const submitCollegeRating = (collegeId, payload) =>
+  API.post(`/colleges/${collegeId}/rating`, payload);
+export const getUserCollegeRating = (collegeId, userId) =>
+  API.get(`/colleges/${collegeId}/rating/${userId}`);
 
 //BLOGS
 export const getBlogs = () => API.get("/blogs");
@@ -31,3 +35,7 @@ export const applyForm = (payload) => API.post("/apply", payload);
 
 //RankPredictor
 export const rankPredictor = (payload) => API.post("/rank-predictor", payload);
+
+//AUTH
+export const signupUser = (payload) => API.post("/users/signup", payload);
+export const loginUser = (payload) => API.post("/users/login", payload);

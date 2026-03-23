@@ -13,6 +13,8 @@ router.post("/filters", collegeController.getCollegesWithFilter);
 
 router.post("/reviews/:id", reviewsController.createReview);
 router.put("/reviews/:id", reviewsController.updateReview);
+router.post("/:collegeId/rating", collegeController.upsertCollegeRating);
+router.get("/:collegeId/rating/:userId", collegeController.getUserCollegeRating);
 
 router.post("/course/add", collegeController.addCourse);
 router.get("/course/:id", collegeController.getCoursesByCollege);

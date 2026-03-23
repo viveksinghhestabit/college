@@ -1,0 +1,105 @@
+@import "@theme";
+
+.authPage {
+  background: #f4f7fb;
+  min-height: calc(100vh - 200px);
+  padding: 3rem 0;
+}
+
+.authCard {
+  background: #fff;
+  border: 1px solid #dbe4f2;
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(42, 58, 87, 0.08);
+  padding: 2rem;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.title {
+  color: $primary-color;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.subtitle {
+  color: #4f5e78;
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  color: #2a3a57;
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+}
+
+.input {
+  border: 1px solid #ccd8ea;
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+
+  &:focus {
+    box-shadow: none;
+    border-color: $primary-color;
+  }
+}
+
+.primaryButton {
+  background: #459b08;
+  border: 1px solid #459b08;
+  color: #fff;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 0.7rem 1rem;
+
+  &:hover,
+  &:focus {
+    background: #3f8a07;
+    border-color: #3f8a07;
+    color: #fff;
+  }
+}
+
+.secondaryButton {
+  margin-top: 0.85rem;
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  background: #fff;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 0.7rem 1rem;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    background: $primary-color;
+    color: #fff;
+  }
+}
+
+.sectionTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2a3a57;
+  margin-bottom: 0.25rem;
+}
+
+.helperText {
+  color: #6b7a95;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .authPage {
+    padding: 1.5rem 0;
+  }
+
+  .authCard {
+    margin: 0 0.75rem;
+    padding: 1.2rem;
+  }
+}

@@ -5,12 +5,18 @@ import { AiOutlineFlag } from "react-icons/ai";
 import { FaLocationDot } from "react-icons/fa6";
 import ContactDetails from "@/components/College/ContactDetails";
 import { useRouter } from "next/router";
-import { getCollegeById } from "@/api";
+import {
+  getCollegeById,
+  getUserCollegeRating,
+  submitCollegeRating,
+} from "@/api";
 import CommonTable from "../common/common-table";
 import Loader from "../common/Loader";
 import Modal from "react-responsive-modal";
 import Link from "next/link";
 import ApplyForm from "../common/ApplyForm";
+import { getStoredUser } from "@/utils/authStorage";
+import { toast } from "react-toastify";
 
 const CollegeDetailsComponent = () => {
   const router = useRouter();
@@ -18,6 +24,10 @@ const CollegeDetailsComponent = () => {
 
   const [collegeDetails, setCollegeDetails] = useState({});
   const [loading, setLoading] = useState(true);
+  const [selectedRating, setSelectedRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [ratingSubmitting, setRatingSubmitting] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
   const [open, setOpen] = useState(false);
 
@@ -40,6 +50,88 @@ const CollegeDetailsComponent = () => {
       fetchCollegeDetails(collegeId);
     }
   }, [collegeId]);
+
+  useEffect(() => {
+    const user = getStoredUser();
+    setLoggedInUser(user);
+  }, []);
+
+  useEffect(() => {
+    const fetchMyRating = async () => {
+      if (!collegeId || !loggedInUser?.id) {
+        return;
+      }
+
+      try {
+        const res = await getUserCollegeRating(collegeId, loggedInUser.id);
+        setSelectedRating(res?.data?.data?.rating || 0);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchMyRating();
+  }, [collegeId, loggedInUser?.id]);
+
+  const handleRatingSubmit = async () => {
+    if (!loggedInUser?.id) {
+      toast.error("Please login to rate this college");
+      return;
+    }
+
+    if (!selectedRating) {
+      toast.error("Please select a rating");
+      return;
+    }
+
+    try {
+      setRatingSubmitting(true);
+      await submitCollegeRating(collegeId, {
+        userId: loggedInUser.id,
+        rating: selectedRating,
+      });
+      await fetchCollegeDetails(collegeId);
+      toast.success("Rating submitted successfully");
+    } catch (error) {
+      toast.error(error?.response?.data?.message || "Failed to submit rating");
+    } finally {
+      setRatingSubmitting(false);
+    }
+  };
+
+  const renderStaticStars = (ratingValue) => {
+    const roundedRating = Math.round(Number(ratingValue || 0));
+    return Array.from({ length: 5 }, (_, index) => (
+      <AiFillStar
+        key={`static-rating-star-${index}`}
+        color={index < roundedRating ? "#FFC90D" : "#cfd4dc"}
+        fontSize={22}
+      />
+    ));
+  };
+
+  const renderInteractiveStars = () => {
+    const activeStars = hoverRating || selectedRating;
+    return Array.from({ length: 5 }, (_, index) => {
+      const starValue = index + 1;
+      return (
+        <button
+          type="button"
+          key={`interactive-rating-star-${starValue}`}
+          className="btn p-0 border-0 bg-transparent"
+          onMouseEnter={() => setHoverRating(starValue)}
+          onMouseLeave={() => setHoverRating(0)}
+          onClick={() => setSelectedRating(starValue)}
+          aria-label={`Rate ${starValue} star`}
+        >
+          <AiFillStar
+            color={starValue <= activeStars ? "#FFC90D" : "#cfd4dc"}
+            fontSize={28}
+          />
+        </button>
+      );
+    });
+  };
 
   if (loading) {
     return <Loader />;
@@ -66,19 +158,16 @@ const CollegeDetailsComponent = () => {
             <div className="d-flex flex-column text-white ">
               <h1 className="text-white">{collegeDetails?.fullName}</h1>
               <div className="d-flex gap-4">
-                <div className="d-flex">
-                  <div>
-                    <AiFillStar color="#FFC90D" fontSize={22} />
+                <div className="d-flex align-items-center gap-2">
+                  <div className="d-flex">
+                    {renderStaticStars(collegeDetails?.averageRating)}
                   </div>
-                  <div>
-                    <AiFillStar fontSize={22} color="#FFC90D" />
-                  </div>
-                  <div>
-                    <AiFillStar fontSize={22} color="#FFC90D" />
-                  </div>
-                  <div>
-                    <AiFillStar fontSize={22} color="#FFC90D" />
-                  </div>
+                  <p className="mb-0">
+                    {Number(collegeDetails?.averageRating || 0).toFixed(1)}
+                    {collegeDetails?.totalRatings
+                      ? ` (${collegeDetails.totalRatings})`
+                      : ""}
+                  </p>
                 </div>
                 <div className="d-flex align-items-center gap-1">
                   <FaLocationDot color="white" />
@@ -176,58 +265,39 @@ const CollegeDetailsComponent = () => {
 
       <ContactDetails />
 
-      <div className="container-lg border rounded p-4">
-        <h4 className="mb-3">Reviews and rating</h4>
-        <div className="my-4 border-bottom d-flex ">
-          <div className="d-flex  border-end align-items-center flex-column col-6">
-            <div className="mb-2">
-              <AiFillStar fontSize={22} color="#FFC90D" />
-              <AiFillStar fontSize={22} color="#FFC90D" />
-              <AiFillStar fontSize={22} color="#FFC90D" />
-              <AiFillStar fontSize={22} color="#FFC90D" />
+      {loggedInUser && (
+        <div className="container-lg border rounded p-4">
+          <h4 className="mb-3">Reviews and rating</h4>
+          <div className="my-4 border-bottom d-flex pb-4">
+            <div className="d-flex border-end align-items-center flex-column col-6">
+              <div className="mb-2 d-flex">
+                {renderStaticStars(collegeDetails?.averageRating)}
+              </div>
+              <strong className="mb-2">
+                {Number(collegeDetails?.averageRating || 0).toFixed(1)} / 5
+              </strong>
+              <p className="w-75 text-center mb-0">
+                Based on {collegeDetails?.totalRatings || 0} verified user ratings.
+              </p>
             </div>
-            <strong className="mb-2">Write a helpfull review!</strong>
-            <p className="w-50 text-center">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam,
-              placeat.
-            </p>
-          </div>
 
-          <div className="px-5 w-100 pb-5">
-            <div className="d-flex gap-3">
-              <div className="input-group mb-3 ">
-                <input
-                  type="text"
-                  className="form-control w-100 bg-gray"
-                  placeholder="Enter Your Email"
-                  aria-label="Recipient's username"
-                  aria-describedby="basic-addon2"
-                />
-              </div>
-              <div className="input-group mb-3 ">
-                <input
-                  type="text"
-                  className="form-control w-100 bg-gray"
-                  placeholder="Enter Your Email"
-                  aria-label="Recipient's username"
-                  aria-describedby="basic-addon2"
-                />
-              </div>
+            <div className="px-5 w-100 pb-2">
+              <h6 className="mb-2">Give your rating</h6>
+              <div className="d-flex gap-2 mb-3">{renderInteractiveStars()}</div>
+              <p className="mb-3 text-muted">
+                Your rating: {selectedRating ? `${selectedRating}/5` : "Not selected"}
+              </p>
+              <button
+                className="bg-green-common p-2 w-100 border-0"
+                onClick={handleRatingSubmit}
+                disabled={ratingSubmitting}
+              >
+                {ratingSubmitting ? "Submitting..." : "Submit rating"}
+              </button>
             </div>
-            <div className="input-group mb-3 ">
-              <textarea
-                className="form-control"
-                id="exampleFormControlTextarea1"
-                placeholder="Write a review"
-                rows="3"
-              ></textarea>
-            </div>
-            <button className="bg-green-common p-2 w-100 border-0">
-              Submit
-            </button>
           </div>
         </div>
-      </div>
+      )}
 
       <Modal
         open={open}

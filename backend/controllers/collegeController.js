@@ -1,5 +1,6 @@
 const { College, Table, Course } = require("../models/college");
 const University = require("../models/university");
+const CollegeRating = require("../models/collegeRating");
 const { isValidObjectId, Types } = require("mongoose");
 const { slugify } = require("../utils/helper");
 
@@ -64,6 +65,102 @@ const collegeController = {
       return res
         .status(200)
         .json({ data: collegeData, message: "College by id" });
+    } catch (err) {
+      return res.status(500).json({ message: err.message });
+    }
+  },
+
+  upsertCollegeRating: async (req, res) => {
+    try {
+      const { collegeId } = req.params;
+      const { userId, rating } = req.body;
+
+      if (!isValidObjectId(userId)) {
+        return res.status(400).json({ message: "Invalid user id" });
+      }
+
+      const ratingNumber = Number(rating);
+      if (!Number.isInteger(ratingNumber) || ratingNumber < 1 || ratingNumber > 5) {
+        return res.status(400).json({ message: "Rating must be between 1 and 5" });
+      }
+
+      const collegeObj = await College.findOne({
+        $or: [
+          { _id: isValidObjectId(collegeId) ? collegeId : undefined },
+          { slug: collegeId },
+        ],
+      });
+
+      if (!collegeObj) {
+        return res.status(404).json({ message: "College not found" });
+      }
+
+      await CollegeRating.findOneAndUpdate(
+        { collegeId: collegeObj._id, userId },
+        { rating: ratingNumber },
+        { upsert: true, new: true, setDefaultsOnInsert: true }
+      );
+
+      const [ratingStats] = await CollegeRating.aggregate([
+        { $match: { collegeId: new Types.ObjectId(collegeObj._id) } },
+        {
+          $group: {
+            _id: "$collegeId",
+            averageRating: { $avg: "$rating" },
+            totalRatings: { $sum: 1 },
+          },
+        },
+      ]);
+
+      const averageRating = ratingStats?.averageRating || 0;
+      const totalRatings = ratingStats?.totalRatings || 0;
+
+      collegeObj.averageRating = Number(averageRating.toFixed(2));
+      collegeObj.totalRatings = totalRatings;
+      await collegeObj.save();
+
+      return res.status(200).json({
+        message: "Rating saved",
+        data: {
+          averageRating: collegeObj.averageRating,
+          totalRatings: collegeObj.totalRatings,
+        },
+      });
+    } catch (err) {
+      return res.status(500).json({ message: err.message });
+    }
+  },
+
+  getUserCollegeRating: async (req, res) => {
+    try {
+      const { collegeId, userId } = req.params;
+
+      if (!isValidObjectId(userId)) {
+        return res.status(400).json({ message: "Invalid user id" });
+      }
+
+      const collegeObj = await College.findOne({
+        $or: [
+          { _id: isValidObjectId(collegeId) ? collegeId : undefined },
+          { slug: collegeId },
+        ],
+      });
+
+      if (!collegeObj) {
+        return res.status(404).json({ message: "College not found" });
+      }
+
+      const rating = await CollegeRating.findOne({
+        collegeId: collegeObj._id,
+        userId,
+      });
+
+      return res.status(200).json({
+        message: "User rating",
+        data: {
+          rating: rating?.rating || 0,
+        },
+      });
     } catch (err) {
       return res.status(500).json({ message: err.message });
     }

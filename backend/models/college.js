@@ -105,6 +105,14 @@ const collegeSchema = new mongoose.Schema({
     type: String,
     enum: ["Private", "Government"],
   },
+  averageRating: {
+    type: Number,
+    default: 0,
+  },
+  totalRatings: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const Course = mongoose.model("Course", courseSchema);

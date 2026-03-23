@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 import Image from "next/image";
 import { NAVLINKS } from "@/constants/navlinksData";
@@ -6,11 +6,34 @@ import Link from "next/link";
 import Sidebar from "./Sidebar";
 import { Modal } from "react-responsive-modal";
 import ConsultationForm from "../ConsultationForm";
+import {
+  clearStoredUser,
+  getStoredUser,
+} from "@/utils/authStorage";
 
 const Header = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(-1);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setIsLoggedIn(!!getStoredUser());
+  }, []);
+
+  useEffect(() => {
+    const syncUserState = () => {
+      setIsLoggedIn(!!getStoredUser());
+    };
+
+    window.addEventListener("storage", syncUserState);
+    window.addEventListener("auth-state-updated", syncUserState);
+
+    return () => {
+      window.removeEventListener("storage", syncUserState);
+      window.removeEventListener("auth-state-updated", syncUserState);
+    };
+  }, []);
 
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
@@ -25,6 +48,12 @@ const Header = () => {
     } else {
       setActiveDropdown(index);
     }
+  };
+
+  const handleLogout = () => {
+    clearStoredUser();
+    setIsLoggedIn(false);
+    window.dispatchEvent(new Event("auth-state-updated"));
   };
 
   return (
@@ -126,17 +155,36 @@ const Header = () => {
                 })}
               </ul>
             </div>
-            <button
-              onClick={() => onOpenModal()}
-              className={`${styles.consultationButton} btn btn-primary d-sm-flex align-items-center justify-content-center d-none`}
-            >
-              <span>Collaboration</span>
-              <i className="fa fa-arrow-right d-block me-2" />
-            </button>
+            <div className={`${styles.actionButtons} d-none d-md-flex`}>
+              <button
+                onClick={() => onOpenModal()}
+                className={`${styles.consultationButton} btn btn-primary d-flex align-items-center justify-content-center`}
+              >
+                <span>Collaboration</span>
+                <i className="fa fa-arrow-right d-block me-2" />
+              </button>
+              {isLoggedIn ? (
+                <button
+                  onClick={handleLogout}
+                  className={`${styles.authButton} btn btn-outline-primary d-flex align-items-center justify-content-center`}
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link
+                  href="/login"
+                  className={`${styles.authButton} btn btn-outline-primary d-flex align-items-center justify-content-center`}
+                >
+                  Login
+                </Link>
+              )}
+            </div>
           </div>
         </nav>
         {showSidebar && (
           <Sidebar
+            isLoggedIn={isLoggedIn}
+            onLogout={handleLogout}
             onOpenModalClick={onOpenModal}
             toggleSidebar={toggleSidebar}
           />
