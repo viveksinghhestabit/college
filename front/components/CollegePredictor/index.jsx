@@ -225,7 +225,7 @@ const CollegePredictorComponent = () => {
         <div className={styles.content}>
           <div className="mb-4">
             <p>
-              The NEET College Predictor 2025 is an useful tool designed to help
+              The NEET College Predictor 2026 is an useful tool designed to help
               BAMS aspirants predict their chances of admission into top private
               and private-public medical colleges in India based on their NEET
               scores.
@@ -238,24 +238,24 @@ const CollegePredictorComponent = () => {
               state quota seats.{" "}
             </p>
             <p>
-              NEET 2025 exam is on 5th May 2025. NEET qualifying percentile is
+              NEET 2026 exam is on 3rd May 2026. NEET qualifying percentile is
               50 for General category and 40 for reserved categories. The
-              expected NEET 2025 cutoff is 720-164 for General/EWS and 163-129
+              expected NEET 2026 cutoff is 720-164 for General/EWS and 163-129
               for reserved categories. Only candidates meeting the qualifying
               cutoff will be eligible for counseling.
             </p>
             <p>
-              After the NEET 2025 result, candidates can use the predictor and
+              After the NEET 2026 result, candidates can use the predictor and
               enter their scores to check expected college allotment. This will
               help them plan better for counseling by analyzing chances of
               getting into preferred private/private-public BAMS colleges based
               on previous years’ cutoff trends. The predictor will be updated
-              with the latest NEET 2025 cutoff once released.
+              with the latest NEET 2026 cutoff once released.
             </p>
           </div>
           <div className="mb-4">
             <div className={styles.title}>
-              Estimate Your Rank with NEET College Predictor 2025
+              Estimate Your Rank with NEET College Predictor 2026
             </div>
             <div>
               <p>
@@ -280,7 +280,7 @@ const CollegePredictorComponent = () => {
                 Use this NEET Marks vs Rank analysis as a reference to set
                 realistic college expectations. An accurate rank estimate will
                 be possible after the NEET result. Use the NEET College
-                Predictor 2025 then to get your list of top BAMS colleges in
+                Predictor 2026 then to get your list of top BAMS colleges in
                 India.
               </p>
             </div>
