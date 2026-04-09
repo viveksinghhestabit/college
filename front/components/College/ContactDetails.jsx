@@ -38,7 +38,7 @@ const quickReachLinks = [
 ];
 
 const brochureLink =
-  "https://drive.google.com/file/d/1F5ifIrmdH3DVlzzgDezaNuEI8X95qkE-/view";
+  "https://drive.google.com/file/d/19nAZ1LLw15to5Maa7Qc-pcMLRAn-hLIc/view";
 
 const ContactDetails = () => {
   const [formData, setFormData] = useState(defaultState);
