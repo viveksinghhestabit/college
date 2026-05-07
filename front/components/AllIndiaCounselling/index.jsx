@@ -33,7 +33,7 @@ const AllIndiaCounsellingComponent = () => {
   };
 
   const analysisTable = {
-    tableName: "Analysis of Students Appeared for NEET 2025 Exam",
+    tableName: "Analysis of Students Appeared for NEET 2026 Exam",
     columns: [
       {
         name: "Year",
@@ -43,6 +43,7 @@ const AllIndiaCounsellingComponent = () => {
       },
     ],
     rows: [
+      ["2026", "22,75,011"],
       ["2025", "23,33,297"],
       ["2023", "20,87,445"],
       ["2022", "18,72,343"],
